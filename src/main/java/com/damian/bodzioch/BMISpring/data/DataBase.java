@@ -13,7 +13,11 @@ public class DataBase {
         this.bmiDataBase.add(bmiRecord);
     }
 
-    public BMI getLastRecord(int id){
+    public BMI getRecord(int id){
         return this.bmiDataBase.get(id);
+    }
+
+    public int getSizeDataBase(){
+        return this.bmiDataBase.size();
     }
 }

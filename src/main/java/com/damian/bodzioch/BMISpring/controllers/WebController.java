@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebController {
@@ -26,12 +27,17 @@ public class WebController {
         bmiRecord.setBmi();
         bmiRecord.setNameResult();
         this.dataBase.addBmiRecord(bmiRecord);
-        model.addAttribute("bmiRecord", this.dataBase.getLastRecord(bmiRecord.getId() - 1));
+        model.addAttribute("bmiRecord", this.dataBase.getRecord(bmiRecord.getId() - 1));
         return "bmiResult";
     }
 
     @RequestMapping(value = "/showBmiRecordById", method = RequestMethod.POST)
-    public String showBmiRecordById(@PathVariable int id){
+    public String showBmiRecordById(@RequestParam int id, Model model){
+        if (id > this.dataBase.getSizeDataBase()){
+            model.addAttribute("bmiRecord", null);
+        }else{
+            model.addAttribute("bmiRecord", this.dataBase.getRecord(id - 1));
+        }
         return "bmiRecordByID";
     }
 }
