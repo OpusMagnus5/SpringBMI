@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz</title>
+</head>
+<body>
+<div>Uzupełnij formularz:</div><br>
+<form method="post">
+    <input type="text" placeholder="waga (kg)" th:field="*{bmiRecord.weight}">
+    <input type="text" placeholder="wzrost (cm)" th:field="*{bmiRecord.height}">
+    <input type="submit" value="Prześlij">
+</form>
+<br><div>Jeśli znasz ID swojego wyniku podaj je poniżej:</div><br>
+<form action="/" method="post">
+    <input type="text" placeholder="ID" name="id">
+    <input type="submit" value="Prześlij">
+</form>
+</body>
+</html>
