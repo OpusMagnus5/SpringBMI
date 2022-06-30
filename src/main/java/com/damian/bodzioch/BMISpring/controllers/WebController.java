@@ -33,7 +33,7 @@ public class WebController {
 
     @RequestMapping(value = "/showBmiRecordById", method = RequestMethod.POST)
     public String showBmiRecordById(@RequestParam int id, Model model){
-        if (id > this.dataBase.getSizeDataBase()){
+        if (id > this.dataBase.getSizeDataBase() || id <= 0){
             model.addAttribute("bmiRecord", null);
         }else{
             model.addAttribute("bmiRecord", this.dataBase.getRecord(id - 1));
